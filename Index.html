@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prem MCX Training Academy</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    font-family: 'Segoe UI', Arial;
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3")
+    no-repeat center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* dark overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        135deg,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.6)
+    );
+    z-index:-1;
+}
+
+/* ===== MAIN CARD ===== */
+.container{
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:50px 60px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.15);
+    animation:fadeUp 1s ease;
+}
+
+/* ===== TEXT ===== */
+h1{
+    font-size:42px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    text-shadow:0 0 15px rgba(255,255,255,0.3);
+}
+
+h2{
+    color:gold;
+    margin-bottom:25px;
+}
+
+h3{
+    font-weight:normal;
+    opacity:0.9;
+}
+
+/* ===== BUTTON AREA ===== */
+.buttons{
+    margin-top:25px;
+}
+
+.buttons a{
+    text-decoration:none;
+}
+
+/* ===== BUTTON STYLE ===== */
+button{
+    padding:16px 36px;
+    margin:15px;
+    border:none;
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.35s;
+    letter-spacing:1px;
+}
+
+/* Green Candle */
+.green{
+    background:linear-gradient(45deg,#00e676,#00c853);
+    color:black;
+}
+
+/* Red Candle */
+.red{
+    background:linear-gradient(45deg,#ff5252,#d50000);
+    color:white;
+}
+
+/* Hover Effects */
+button:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
+
+/* Glow pulse animation */
+.green:hover{
+    box-shadow:0 0 25px #00e676;
+}
+
+.red:hover{
+    box-shadow:0 0 25px #ff5252;
+}
+
+/* ===== ENTRY ANIMATION ===== */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1><i><u>PREM MCX TRAINING ACADEMY</u></i></h1>
+    <h2>Calculating Candles Part</h2>
+
+    <h3>Select Candle</h3>
+
+    <div class="buttons">
+
+        <a href="green.html">
+            <button class="green">Green Candle</button>
+        </a>
+
+        <a href="red.html">
+            <button class="red">Red Candle</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

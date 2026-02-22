@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Close Calculation</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    font-family:'Segoe UI',Arial;
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3")
+    no-repeat center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Dark overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    z-index:-1;
+}
+
+/* ===== CARD ===== */
+.container{
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.07);
+    border-radius:18px;
+    padding:45px 55px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.7);
+    border:1px solid rgba(255,255,255,0.2);
+    width:420px;
+}
+
+/* TITLE */
+h1{
+    margin-bottom:25px;
+}
+
+/* INPUT */
+input{
+    width:85%;
+    padding:14px;
+    margin:12px 0;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    text-align:center;
+}
+
+/* BUTTON */
+button{
+    padding:14px 30px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
+    cursor:pointer;
+    background:linear-gradient(45deg,#00e676,#00c853);
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #00e676;
+}
+
+/* RESULT BOX */
+.result{
+    margin-top:25px;
+    padding:18px;
+    background:rgba(0,0,0,0.4);
+    border-radius:12px;
+    display:none;
+}
+
+.result h3{
+    color:gold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Open Close (2 Part)</h1>
+
+<input type="number" id="openPrice" placeholder="Enter Open Price">
+
+<input type="number" id="closePrice" placeholder="Enter Close Price">
+
+<br>
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="resultBox">
+
+<h3>Calculation Result</h3>
+
+<p id="zValue"></p>
+<p id="firstSR"></p>
+<p id="secondSR"></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function calculate(){
+
+    let x = parseFloat(document.getElementById("openPrice").value);
+    let y = parseFloat(document.getElementById("closePrice").value);
+
+    if(isNaN(x) || isNaN(y)){
+        alert("Please enter both values");
+        return;
+    }
+
+    /* POSITIVE DIFFERENCE USING IF CONDITION */
+    let difference;
+
+    if(x > y){
+        difference = x - y;
+    }
+    else if(y > x){
+        difference = y - x;
+    }
+    else{
+        difference = 0;
+    }
+
+    /* FORMULA */
+    let z = difference / 2;
+
+    if(x > y){
+        a=x-z;
+    }
+    else if(y > x){
+        a=y-z;
+    }
+    else{
+        difference = 0;
+    }
+
+    let second = a - z;
+
+    /* SHOW RESULT */
+    document.getElementById("resultBox").style.display="block";
+
+    document.getElementById("zValue").innerHTML =
+        "Difference  = <b>"+z.toFixed(2)+"</b>";
+
+    document.getElementById("firstSR").innerHTML =
+        "1st Support / Resistance  = <b>"+a.toFixed(2)+"</b>";
+
+    document.getElementById("secondSR").innerHTML =
+        "2nd Support / Resistance = <b>"+second.toFixed(2)+"</b>";
+}
+
+</script>
+
+</body>
+</html>

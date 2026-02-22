@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Candle</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    font-family:'Segoe UI', Arial;
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1559526324-593bc073d938")
+    no-repeat center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Dark overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        135deg,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.6)
+    );
+    z-index:-1;
+}
+
+/* ===== CARD CONTAINER ===== */
+.container{
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:45px 60px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.15);
+    animation:fadeUp 0.8s ease;
+    min-width:420px;
+}
+
+/* ===== TITLE ===== */
+h1{
+    margin-bottom:30px;
+    letter-spacing:1px;
+    text-shadow:0 0 12px rgba(255,255,255,0.3);
+}
+
+/* ===== BUTTON BASE ===== */
+button{
+    padding:14px 30px;
+    margin:10px;
+    font-size:17px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.35s;
+    font-weight:600;
+}
+
+/* Active button */
+.activeBtn{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(255,255,255,0.9);
+    outline:2px solid white;
+}
+
+/* ===== MAIN OPTIONS ===== */
+.upper{
+    background:linear-gradient(45deg,#02a45a,#026f3a);
+    color:white;
+}
+
+.lower{
+    background:linear-gradient(45deg,#c11212,#9a0202);
+    color:white;
+}
+
+.body{
+    background:linear-gradient(45deg,#b79b05,#796502);
+    color:black;
+}
+
+/* ===== SECOND LEVEL ===== */
+.optionBtn{
+    background:linear-gradient(45deg,#0b6cb3,#023e6f);
+    color:white;
+}
+
+/* ===== THIRD LEVEL ===== */
+.partBtn{
+    background:linear-gradient(45deg,#2a2cff,#020981);
+    color:white;
+}
+
+/* Hover effect */
+button:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
+
+/* ===== OPTION BOX ===== */
+.optionBox{
+    margin-top:25px;
+    display:none;
+    animation:fadeIn 0.4s ease;
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Select Any Three Value</h1>
+
+    <!-- First Options -->
+    <div>
+        <button id="upperBtn" class="upper" onclick="showSection('upper')">Upper Value</button>
+        <button id="lowerBtn" class="lower" onclick="showSection('lower')">Lower Value</button>
+        <button id="bodyBtn" class="body" onclick="showSection('body')">Body</button>
+    </div>
+
+    <!-- Upper -->
+    <div id="upperOptions" class="optionBox">
+        <h2>Choose</h2>
+        <button class="optionBtn" onclick="toggleCloseHigh()">High - Close</button>
+    </div>
+
+    <!-- Lower -->
+    <div id="lowerOptions" class="optionBox">
+        <h2>Choose</h2>
+        <button class="optionBtn" onclick="toggleOpenLow()">Open - Low</button>
+    </div>
+
+    <!-- Body -->
+    <div id="bodyOptions" class="optionBox">
+        <h2>Choose</h2>
+        <button class="optionBtn" onclick="toggleOpenClose()">Open - Close</button>
+    </div>
+
+    <!-- Third Levels -->
+    <div id="closeHighOptions" class="optionBox">
+        <h3>Select Part</h3>
+        <button class="partBtn" onclick="window.location.href='close-high-2part.html'">
+            2 Part
+        </button>
+        <button class="partBtn" onclick="window.location.href='close-high-3part.html'">
+            3 Part
+        </button>
+    </div>
+
+
+    <div id="openLowOptions" class="optionBox">
+        <h3>Select Part</h3>
+        <button class="partBtn" onclick="window.location.href='open-low-2part.html'">
+            2 Part
+        </button>
+        <button class="partBtn" onclick="window.location.href='open-low-3part.html'">
+            3 Part
+        </button>
+    </div>
+
+    <div id="openCloseOptions" class="optionBox">
+        <h3>Select Part</h3>
+        <button class="partBtn" onclick="window.location.href='open-close-2part.html'">
+            2 Part
+        </button>
+        <button class="partBtn" onclick="window.location.href='open-close-3part.html'">
+            3 Part
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+function hideAll(){
+    document.querySelectorAll(".optionBox")
+        .forEach(el => el.style.display="none");
+
+    document.querySelectorAll("button")
+        .forEach(btn => btn.classList.remove("activeBtn"));
+}
+
+function showSection(type){
+    hideAll();
+
+    document.getElementById(type+"Options").style.display="block";
+    document.getElementById(type+"Btn").classList.add("activeBtn");
+}
+
+function toggleCloseHigh(){
+    toggleBox("closeHighOptions");
+}
+
+function toggleOpenLow(){
+    toggleBox("openLowOptions");
+}
+
+function toggleOpenClose(){
+    toggleBox("openCloseOptions");
+}
+
+function toggleBox(id){
+    let section=document.getElementById(id);
+    section.style.display =
+        section.style.display==="block" ? "none" : "block";
+}
+
+</script>
+
+</body>
+</html>
